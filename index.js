@@ -7,7 +7,10 @@ const app = express()
 const port = 8000
 
 //Template engine
-app.engine('handlebars', exphbs.engine())
+app.engine('handlebars', exphbs.engine({
+  layoutsDir: __dirname + '/views/layouts',
+  defaultLayout: 'main'
+}))
 app.set('view engine', 'handlebars')
 app.use(express.static('public'))
 
