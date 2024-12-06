@@ -48,4 +48,19 @@ router.get("/edit/:id", async function (req, res) {
   res.render("notes/edit", { note });
 });
 
+//Edição de notas
+router.post("/update", function (req, res) {
+  const data = req.body;
+  const id = ObjectId.createFromHexString(data.id);
+  const title = data.title;
+  const description = data.description;
+
+  db.getDb()
+    .db()
+    .collection("notes")
+    .updateOne({ _id: id }, { $set: { title, description } });
+
+  res.redirect("/");
+});
+
 module.exports = router;
