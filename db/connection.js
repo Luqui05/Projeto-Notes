@@ -1,5 +1,5 @@
-const { MongoClient } = require('mongodb')
-const url = "mongodb://localhost:27017/notesDb"
+const { MongoClient } = require("mongodb");
+const url = "mongodb://127.0.0.1:27017/notesDb";
 
 let _db;
 
@@ -8,24 +8,22 @@ let _db;
 // 2. Salva a conexão na variável _db
 // 3. Chama a função de callback cb
 // 4. Se der erro, chama a função de callback com o erro
-const initDb = cb => {
-
+const initDb = (cb) => {
   MongoClient.connect(url)
-    .then(client => {
-      _db = client
-      cb(null, _db)
+    .then((client) => {
+      _db = client;
+      cb(null, _db);
     })
-    .catch(err => {
+    .catch((err) => {
       cb(err);
-    })
-
-}
+    });
+};
 
 const getDb = () => {
   return _db;
-}
+};
 
 module.exports = {
   initDb,
-  getDb
-}
+  getDb,
+};
